@@ -5,6 +5,7 @@ Knight Travails project from Javascript section of the Full Stack Javascript Cou
 Function `knightMoves` that shows the shortest possible way to get from one square (coordinate) to another in a 8x8 chessboard by outputting all squares the knight will stop on along the way. Unweighted graph and BFS is used.
 
 Example:
+- `knightMoves([0,0],[0,0]) == Already there`
 - `knightMoves([0,0],[1,2]) == [0,0]->[1,2]`
 - `knightMoves([0,0],[3,3]) == [0,0]->[2,1]->[3,3]`
 - `knightMoves([3,3],[0,0]) == [3,3]->[1,2]->[0,0]`
