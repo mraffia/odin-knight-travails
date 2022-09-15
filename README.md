@@ -2,7 +2,7 @@
 Knight Travails project from Javascript section of the Full Stack Javascript Course on The Odin Project
 
 ## Implementation
-Function `knightMoves` that shows the shortest possible way to get from one square (coordinate) to another in an 8x8 chessboard by outputting all squares the knight will stop on along the way. Unweighted graph and BFS is used.
+Function `knightMoves` that shows the shortest possible way to get from one square (coordinate) to another in an 8x8 chessboard by outputting all squares the knight will stop on along the way. Unweighted graph and BFS (breadth-first search) algorithm is used.
 
 Example:
 - `knightMoves([0,0],[0,0]) == Already there`
