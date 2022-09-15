@@ -43,7 +43,7 @@ class Board {
 
 function knightMoves(board, start, end) {
     if (start[0] === end[0] && start[1] === end[1]) {
-        return [start];
+        return `Start (${start}) and end (${end}) coordinate is the same. AKA you're already there.`;
     }
 
     let startStr = start.toString();
@@ -54,7 +54,8 @@ function knightMoves(board, start, end) {
     let tail = 0;
 
     while (tail < queue.length) {
-        let position = queue[tail++];
+        let position = queue[tail];
+        tail++;
         let positionStr = position.toString();
         let availableMoves;
 
@@ -77,17 +78,25 @@ function knightMoves(board, start, end) {
             if (visit[0] === end[0] && visit[1] === end[1]) {
                 let path = [visit];
 
-                while (position[0] !== start[0] && position[1] !== start[1]) {
+                while (!(position[0] === start[0] && position[1] === start[1])) {
                     path.push(position);
                     position = predecessor[positionStr];
+                    positionStr = position.toString();
                 } 
+
 
                 path.push(position);
                 path.reverse();
                 
                 let pathOutput = `You made it in ${path.length - 1} moves! Here's your path:\n`
                 for (let i = 0; i < path.length; i++) {
-                    pathOutput += `${path[i]}\n`
+                    if (i === 0) {
+                        pathOutput += `${path[i]} --- start\n`;
+                    } else if (i === path.length - 1) {
+                        pathOutput += `${path[i]} --- end`;
+                    } else {
+                        pathOutput += `${path[i]}\n`;
+                    }
                 }
 
                 return pathOutput;
@@ -98,11 +107,17 @@ function knightMoves(board, start, end) {
         }
     }
 
-    return "There is no path from " + start + " to " + target;
+    return `There is no path from ${start} to ${end}. (OUT OF BOUNDS)`;
 }
 
-let chessBoard = new Board(8);
+let chessBoard = new Board();
 chessBoard.generateBoard();
 
-console.log(chessBoard.actualBoard);
-console.log(knightMoves(chessBoard.actualBoard, [3, 3], [0, 0]));
+// TEST
+console.log(knightMoves(chessBoard.actualBoard, [0, 0], [0, 0]));
+console.log(knightMoves(chessBoard.actualBoard, [0, 0], [1, 2]));
+console.log(knightMoves(chessBoard.actualBoard, [0, 0], [3, 3]));
+console.log(knightMoves(chessBoard.actualBoard, [3, 3], [4, 3]));
+console.log(knightMoves(chessBoard.actualBoard, [0, 0], [7, 5]));
+console.log(knightMoves(chessBoard.actualBoard, [0, 0], [-1, 0]));
+console.log(knightMoves(chessBoard.actualBoard, [0, 0], [0, 11]));
