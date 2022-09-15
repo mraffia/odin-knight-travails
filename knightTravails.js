@@ -44,6 +44,8 @@ class Board {
 function knightMoves(board, start, end) {
     if (start[0] === end[0] && start[1] === end[1]) {
         return `Start (${start}) and end (${end}) coordinate is the same. AKA you're already there.`;
+    } else if (start[0] >= 8 || start[1] >= 8 || start[0] < 0 || start[1] < 0 || end[0] >= 8 || end[1] >= 8 || end[0] < 0 || end[1] < 0) {
+        return `There is no path from ${start} to ${end}. (OUT OF BOUNDS)`;
     }
 
     let startStr = start.toString();
@@ -107,7 +109,7 @@ function knightMoves(board, start, end) {
         }
     }
 
-    return `There is no path from ${start} to ${end}. (OUT OF BOUNDS)`;
+    return `There is no path from ${start} to ${end}.`;
 }
 
 let chessBoard = new Board();
@@ -118,6 +120,6 @@ console.log(knightMoves(chessBoard.actualBoard, [0, 0], [0, 0]));
 console.log(knightMoves(chessBoard.actualBoard, [0, 0], [1, 2]));
 console.log(knightMoves(chessBoard.actualBoard, [0, 0], [3, 3]));
 console.log(knightMoves(chessBoard.actualBoard, [3, 3], [4, 3]));
-console.log(knightMoves(chessBoard.actualBoard, [0, 0], [7, 5]));
+console.log(knightMoves(chessBoard.actualBoard, [0, 0], [7, 7]));
 console.log(knightMoves(chessBoard.actualBoard, [0, 0], [-1, 0]));
-console.log(knightMoves(chessBoard.actualBoard, [0, 0], [0, 11]));
+console.log(knightMoves(chessBoard.actualBoard, [0, 11], [0, 0]));
